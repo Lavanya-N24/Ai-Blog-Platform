@@ -1,0 +1,4 @@
+Sending request to http://localhost:8005/api/ai/image-caption...
+Status Code: 200
+Response Body:
+{"success":true,"caption":"The image does not contain any visual information, as it is a solid red color. Therefore, I am unable to provide a caption based on the image. If you provide an image with visual content, I can assist you with creating a caption.","message":"Caption generated using Groq Vision (90B)."}
