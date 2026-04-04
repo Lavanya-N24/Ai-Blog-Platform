@@ -126,8 +126,9 @@ def upload_avatar(user_id: int, file: UploadFile = File(...), db: Session = Depe
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
             
-        # Update user (Use absolute URL for frontend convenience)
-        avatar_url = f"http://localhost:8000/static/avatars/{filename}"
+        # Absolute URL for the frontend (set PUBLIC_API_URL on Render, etc.)
+        public_base = os.getenv("PUBLIC_API_URL", "http://localhost:8000").rstrip("/")
+        avatar_url = f"{public_base}/static/avatars/{filename}"
         if hasattr(user, 'avatar_url'):
             user.avatar_url = avatar_url
         db.commit()

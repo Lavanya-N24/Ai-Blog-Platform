@@ -1,12 +1,11 @@
 import sys
 import os
 
-# Add the backend directory to the sys.path so we can import app
-# Check if running on Vercel
-if os.environ.get('VERCEL'):
-    # Vercel places the root at /var/task
-    # We need to add 'backend' to path
-    sys.path.append(os.path.join(os.getcwd(), 'backend'))
+# Repo root must be on sys.path so `from backend.app.main import app` resolves
+# (adding only .../backend would break that import).
+_root = os.getcwd()
+if _root not in sys.path:
+    sys.path.insert(0, _root)
 
 from backend.app.main import app
 
